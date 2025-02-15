@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
     <!-- Settings Panel -->
@@ -118,6 +119,34 @@
         </section>
     </div>
 
+    <!-- Chat Bot Interface -->
+    <div class="chatbot-container">
+        <button id="chatToggle" class="chat-toggle">
+            <i class="fas fa-comments"></i>
+        </button>
+
+        <div id="chatWindow" class="chat-window">
+            <div class="chat-header">
+                <h3><i class="fas fa-robot"></i> AI Assistant</h3>
+                <button id="closeChatBtn" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="chatMessages" class="chat-messages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input-container">
+                <input type="text" 
+                       id="chatInput" 
+                       placeholder="Type your message..."
+                       aria-label="Chat message input">
+                <button id="sendMessage" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -130,6 +159,7 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
