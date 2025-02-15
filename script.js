@@ -211,3 +211,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// Settings Panel Controls
+document.addEventListener('DOMContentLoaded', function() {
+    const settingsToggle = document.getElementById('settingsToggle');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const closeSettings = document.getElementById('closeSettings');
+
+    // Settings Toggle
+    settingsToggle.addEventListener('click', () => {
+        settingsPanel.classList.add('active');
+        settingsToggle.style.opacity = '0';
+    });
+
+    // Close Settings
+    closeSettings.addEventListener('click', () => {
+        settingsPanel.classList.remove('active');
+        settingsToggle.style.opacity = '1';
+    });
+
+    // Close settings when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!settingsPanel.contains(e.target) && 
+            !settingsToggle.contains(e.target) && 
+            settingsPanel.classList.contains('active')) {
+            settingsPanel.classList.remove('active');
+            settingsToggle.style.opacity = '1';
+        }
+    });
+});
