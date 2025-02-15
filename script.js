@@ -1,10 +1,40 @@
-// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS (Animate On Scroll)
-    AOS.init({
-        duration: 1000,
-        once: true
-    });
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }
+
+    // Settings Panel Controls
+    const settingsToggle = document.getElementById('settingsToggle');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const closeSettings = document.getElementById('closeSettings');
+
+    if (settingsToggle && settingsPanel && closeSettings) {
+        // Open settings panel
+        settingsToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            settingsPanel.style.right = '0px';
+            settingsToggle.style.opacity = '0';
+        });
+
+        // Close settings panel
+        closeSettings.addEventListener('click', function() {
+            settingsPanel.style.right = '-300px';
+            settingsToggle.style.opacity = '1';
+        });
+
+        // Close panel when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!settingsPanel.contains(e.target) && 
+                !settingsToggle.contains(e.target)) {
+                settingsPanel.style.right = '-300px';
+                settingsToggle.style.opacity = '1';
+            }
+        });
+    }
 
     // Theme Management
     const themeToggle = document.getElementById('themeToggle');
@@ -18,79 +48,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateThemeIcon(theme) {
-        const icon = themeToggle.querySelector('i');
-        const text = themeToggle.querySelector('span');
-        if (theme === 'dark') {
-            icon.className = 'fas fa-moon';
-            text.textContent = 'Dark Mode';
-        } else {
-            icon.className = 'fas fa-sun';
-            text.textContent = 'Light Mode';
+        if (themeToggle) {
+            const icon = themeToggle.querySelector('i');
+            const text = themeToggle.querySelector('span');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+                text.textContent = 'Dark Mode';
+            } else {
+                icon.className = 'fas fa-sun';
+                text.textContent = 'Light Mode';
+            }
         }
     }
 
     setTheme(savedTheme);
 
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = root.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-    });
-
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
         });
-    });
-
-    // Navigation Menu Animation
-    const nav = document.querySelector('nav');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            nav.style.transform = 'translateY(-100%)';
-        } else {
-            nav.style.transform = 'translateY(0)';
-        }
-        
-        if (currentScroll > 100) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
-    });
-
-    // Settings Panel
-    const settingsToggle = document.getElementById('settingsToggle');
-    const settingsPanel = document.getElementById('settingsPanel');
-    const closeSettings = document.getElementById('closeSettings');
-
-    settingsToggle.addEventListener('click', () => {
-        settingsPanel.classList.add('active');
-        settingsToggle.style.opacity = '0';
-    });
-
-    closeSettings.addEventListener('click', () => {
-        settingsPanel.classList.remove('active');
-        settingsToggle.style.opacity = '1';
-    });
+    }
 
     // Text Size Controls
     const textSizeControls = {
@@ -103,22 +82,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateTextSize(size) {
         document.documentElement.style.setProperty('--font-size-base', `${size}px`);
         localStorage.setItem('textSize', size);
-        document.getElementById('textSize').textContent = size;
+        const textSizeElement = document.getElementById('textSize');
+        if (textSizeElement) {
+            textSizeElement.textContent = size;
+        }
     }
 
-    document.getElementById('increaseText').addEventListener('click', () => {
-        if (textSizeControls.current < textSizeControls.max) {
-            textSizeControls.current += textSizeControls.step;
-            updateTextSize(textSizeControls.current);
-        }
-    });
+    const increaseText = document.getElementById('increaseText');
+    const decreaseText = document.getElementById('decreaseText');
 
-    document.getElementById('decreaseText').addEventListener('click', () => {
-        if (textSizeControls.current > textSizeControls.min) {
-            textSizeControls.current -= textSizeControls.step;
-            updateTextSize(textSizeControls.current);
-        }
-    });
+    if (increaseText) {
+        increaseText.addEventListener('click', () => {
+            if (textSizeControls.current < textSizeControls.max) {
+                textSizeControls.current += textSizeControls.step;
+                updateTextSize(textSizeControls.current);
+            }
+        });
+    }
+
+    if (decreaseText) {
+        decreaseText.addEventListener('click', () => {
+            if (textSizeControls.current > textSizeControls.min) {
+                textSizeControls.current -= textSizeControls.step;
+                updateTextSize(textSizeControls.current);
+            }
+        });
+    }
 
     // Initialize text size from localStorage
     updateTextSize(textSizeControls.current);
@@ -130,8 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateAccentColor(color) {
         document.documentElement.style.setProperty('--accent-color', color);
         localStorage.setItem('accentColor', color);
-        
-        // Update hover color (slightly lighter)
         const hoverColor = adjustColorBrightness(color, 20);
         document.documentElement.style.setProperty('--accent-hover', hoverColor);
     }
@@ -150,11 +137,54 @@ document.addEventListener('DOMContentLoaded', function() {
         ).toString(16).slice(1);
     }
 
-    colorPicker.value = savedColor;
-    updateAccentColor(savedColor);
+    if (colorPicker) {
+        colorPicker.value = savedColor;
+        updateAccentColor(savedColor);
+        colorPicker.addEventListener('input', (e) => {
+            updateAccentColor(e.target.value);
+        });
+    }
 
-    colorPicker.addEventListener('input', (e) => {
-        updateAccentColor(e.target.value);
+    // Navigation Menu Animation
+    const nav = document.querySelector('nav');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (nav) {
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            if (currentScroll > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        }
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 
     // Image Lazy Loading
@@ -208,34 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 500);
-        }
-    });
-});
-// Settings Panel Controls
-document.addEventListener('DOMContentLoaded', function() {
-    const settingsToggle = document.getElementById('settingsToggle');
-    const settingsPanel = document.getElementById('settingsPanel');
-    const closeSettings = document.getElementById('closeSettings');
-
-    // Settings Toggle
-    settingsToggle.addEventListener('click', () => {
-        settingsPanel.classList.add('active');
-        settingsToggle.style.opacity = '0';
-    });
-
-    // Close Settings
-    closeSettings.addEventListener('click', () => {
-        settingsPanel.classList.remove('active');
-        settingsToggle.style.opacity = '1';
-    });
-
-    // Close settings when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!settingsPanel.contains(e.target) && 
-            !settingsToggle.contains(e.target) && 
-            settingsPanel.classList.contains('active')) {
-            settingsPanel.classList.remove('active');
-            settingsToggle.style.opacity = '1';
         }
     });
 });
