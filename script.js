@@ -241,3 +241,139 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// Chatbot Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced responses object
+    const responses = {
+        // Website-specific responses
+        "culinary": "I'm passionate about culinary arts! I'm planning to study in France and master French cuisine techniques. Would you like to know more about my culinary journey?",
+        "cooking": "Cooking is my biggest passion! I specialize in French cuisine and am constantly learning new techniques. Would you like to see some of my favorite recipes?",
+        "chef": "My goal is to become a professional chef! I'm planning to study culinary arts in France. Would you like to know more about my plans?",
+        "france": "I plan to study culinary arts in France to master French cuisine. It's been my dream to learn from the best chefs in the world!",
+        "sports": "I'm very active in sports! I particularly enjoy boxing and swimming. These activities help me stay fit and focused. Would you like to know more about my training routine?",
+        "boxing": "Boxing is one of my favorite sports! It helps me stay disciplined and focused. I train regularly and love the physical and mental challenges it brings.",
+        "swimming": "Swimming is a great way to stay fit! I practice regularly and find it very relaxing. Would you like to know more about my swimming routine?",
+        "gaming": "I'm an avid gamer! I enjoy various games and sometimes stream my gaming sessions. Would you like to know what games I play?",
+        "cars": "I'm passionate about supercars and motorcycles! I love learning about different models and their specifications. Do you have a favorite supercar?",
+        "bikes": "Motorcycles are one of my passions! I'm particularly interested in high-performance bikes. Would you like to know more about my favorite models?",
+
+        // General questions
+        "hello": "Hi there! I'm the website's AI assistant. How can I help you today?",
+        "hi": "Hello! I'd love to tell you more about my journey and passions. What would you like to know?",
+        "how are you": "I'm doing great, thanks for asking! I'm here to tell you all about my culinary journey and other interests. What would you like to know?",
+        "who are you": "I'm an AI assistant who can tell you all about this website owner's journey in culinary arts, sports, gaming, and automotive interests!",
+        "what do you do": "I'm here to help you learn more about the website owner's passions in culinary arts, sports, gaming, and automotive interests. What would you like to know about?",
+
+        // Default responses
+        "default": "I'm not sure about that, but I'd be happy to tell you about my culinary journey, sports activities, gaming interests, or automotive passions. What interests you most?",
+        "unknown": "I might not have information about that specific topic, but I can tell you about my main interests in culinary arts, sports, gaming, or automotive culture!"
+    };
+
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const chatInput = document.getElementById('chatInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const chatMessages = document.getElementById('chatMessages');
+
+    if (chatToggle && chatWindow && closeChatBtn && chatInput && sendMessage && chatMessages) {
+        // Toggle chat window
+        chatToggle.addEventListener('click', () => {
+            chatWindow.classList.add('active');
+            chatToggle.style.display = 'none';
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatWindow.classList.remove('active');
+            chatToggle.style.display = 'block';
+        });
+
+        // Add typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('message', 'bot-message', 'typing-indicator');
+            typingDiv.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typingDiv;
+        }
+
+        // Add message to chat
+        function addMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', `${sender}-message`);
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Get bot response
+        function getBotResponse(message) {
+            message = message.toLowerCase();
+            
+            // Check for exact matches
+            if (responses[message]) {
+                return responses[message];
+            }
+
+            // Check for partial matches
+            for (let key of Object.keys(responses)) {
+                if (message.includes(key)) {
+                    return responses[key];
+                }
+            }
+
+            // Check for question types
+            if (message.includes('?')) {
+                if (message.includes('what') || message.includes('tell me about')) {
+                    return "I can tell you about my journey in culinary arts, sports, gaming, or automotive interests. Which area interests you?";
+                }
+                if (message.includes('where')) {
+                    return "Are you interested in knowing about my future plans to study in France, or something else?";
+                }
+                if (message.includes('why')) {
+                    return "My passion for culinary arts and other interests drives everything I do. Would you like to know more about any specific area?";
+                }
+                if (message.includes('how')) {
+                    return "I'm pursuing my dreams through dedication and hard work. Would you like to know more about my journey?";
+                }
+            }
+
+            return responses.default;
+        }
+
+        // Send message function
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            // Show typing indicator
+            const typingIndicator = showTypingIndicator();
+
+            // Get and add bot response with delay
+            setTimeout(() => {
+                typingIndicator.remove();
+                const response = getBotResponse(message.toLowerCase());
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+
+        // Event listeners
+        sendMessage.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        // Initial bot message
+        setTimeout(() => {
+            addMessage("Hello! How can I help you today?", 'bot');
+        }, 1000);
+    }
+});
+
