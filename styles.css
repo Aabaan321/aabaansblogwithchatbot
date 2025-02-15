@@ -205,6 +205,7 @@ header h1 {
 }
 
 /* Footer Styles */
+/* Footer Styles */
 footer {
     background: var(--bg-secondary);
     padding: 3rem 2rem;
@@ -218,23 +219,91 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    padding: 2rem;
 }
 
 .social-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .social-links a {
     color: var(--text-primary);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-accent);
 }
 
 .social-links a:hover {
-    color: var(--accent-color);
-    transform: translateY(-3px);
+    color: white;
+    transform: translateY(-5px);
 }
+
+.social-links a[href*="instagram"]:hover {
+    background: #e4405f;
+}
+
+.social-links a[href*="wa.me"]:hover {
+    background: #25D366;
+}
+
+.social-links a[href*="mailto"]:hover {
+    background: var(--accent-color);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.contact-item i {
+    color: var(--accent-color);
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Add this to your existing media queries section or create a new one */
+@media (max-width: 768px) {
+    .contact-info {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .contact-item {
+        font-size: 0.8rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+        width: 45px;
+        height: 45px;
+    }
+}
+
 
 /* Settings Panel Styles */
 .settings-toggle {
