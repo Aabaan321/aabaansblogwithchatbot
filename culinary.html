@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Journey | My Passion for Cooking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-section {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/culinary-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .recipe-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 1.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .timeline-item {
+            padding: 2rem;
+            position: relative;
+            margin: 2rem 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 50%;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Settings Panel (same as main page) -->
+    <!-- Include the settings panel code here -->
+
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#about"><i class="fas fa-info-circle"></i> About Culinary</a>
+        <a href="#recipes"><i class="fas fa-book"></i> Recipes</a>
+        <a href="#journey"><i class="fas fa-road"></i> My Journey</a>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>My Culinary Journey</h1>
+            <p>Exploring the Art of French Cuisine</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2><i class="fas fa-utensils"></i> About My Culinary Passion</h2>
+            <p>My love for cooking began in my family kitchen, watching my grandmother prepare traditional dishes. This sparked my interest in French cuisine and my dream of studying culinary arts in France.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>5+ Years</h3>
+                    <p>Cooking Experience</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>50+</h3>
+                    <p>Recipes Mastered</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-award"></i>
+                    <h3>3</h3>
+                    <p>Cooking Certificates</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="recipes" class="section">
+            <h2><i class="fas fa-book"></i> Favorite Recipes</h2>
+            <div class="recipe-grid">
+                <article class="recipe-card">
+                    <img src="images/recipe1.jpg" alt="Coq au Vin" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3>Coq au Vin</h3>
+                        <p>Traditional French chicken braised in wine, mushrooms, and pearl onions.</p>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </article>
+                <article class="recipe-card">
+                    <img src="images/recipe2.jpg" alt="Beef Bourguignon" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3>Beef Bourguignon</h3>
+                        <p>Classic French beef stew braised in red wine with vegetables.</p>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </article>
+                <article class="recipe-card">
+                    <img src="images/recipe3.jpg" alt="Ratatouille" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3>Ratatouille</h3>
+                        <p>Provençal vegetable stew featuring eggplant, zucchini, and tomatoes.</p>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="journey" class="section">
+            <h2><i class="fas fa-road"></i> My Culinary Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>2020</h3>
+                    <p>Started learning basic cooking techniques</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2021</h3>
+                    <p>Completed first cooking certification</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2022</h3>
+                    <p>Worked in local restaurant kitchen</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2023</h3>
+                    <p>Preparing for culinary school in France</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2><i class="fas fa-camera"></i> Food Gallery</h2>
+            <div class="gallery-grid">
+                <!-- Add your food images here -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2024 Journey to Culinary Excellence</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
