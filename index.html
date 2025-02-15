@@ -1,72 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journey to Culinary Excellence</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h3><i class="fas fa-cog"></i> Customize</h3>
+            <button id="closeSettings"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-item">
+                <label>Theme</label>
+                <button id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+            </div>
+            <div class="setting-item">
+                <label>Text Size</label>
+                <div class="text-size-controls">
+                    <button id="decreaseText"><i class="fas fa-minus"></i></button>
+                    <span id="textSize">16</span>
+                    <button id="increaseText"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Accent Color</label>
+                <input type="color" id="accentColor" value="#ff4d4d">
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Toggle Button -->
+    <button id="settingsToggle" class="settings-toggle">
+        <i class="fas fa-cog"></i>
+    </button>
+
     <header>
-        <h1>Journey to Culinary Excellence</h1>
-        <p>Aspiring Chef | Sports Enthusiast | Adventure Seeker</p>
+        <div class="header-content">
+            <h1><i class="fas fa-utensils"></i> Journey to Culinary Excellence</h1>
+            <p>Aspiring Chef | Sports Enthusiast | Adventure Seeker</p>
+        </div>
     </header>
     
     <nav>
-        <a href="#about">About Me</a>
-        <a href="#passions">Passions</a>
-        <a href="#future">Future Plans</a>
-        <a href="#blog">Blog</a>
+        <a href="#about"><i class="fas fa-user"></i> About Me</a>
+        <a href="#passions"><i class="fas fa-heart"></i> Passions</a>
+        <a href="#future"><i class="fas fa-road"></i> Future Plans</a>
+        <a href="#blog"><i class="fas fa-blog"></i> Blog</a>
     </nav>
     
     <div class="container">
         <section id="about" class="section">
-            <h2>About Me</h2>
-            <p>Welcome to my world! I'm an aspiring chef with a passion for culinary arts and a love for adventure. When I'm not dreaming up new recipes, you'll find me in the boxing ring, swimming laps, or exploring new destinations.</p>
+            <h2><i class="fas fa-user-circle"></i> About Me</h2>
+            <div class="about-content">
+                <img src="images/profile.jpg" alt="Chef Profile" class="profile-image">
+                <p>Welcome to my world! I'm an aspiring chef with a passion for culinary arts and a love for adventure. When I'm not dreaming up new recipes, you'll find me in the boxing ring, swimming laps, or exploring new destinations.</p>
+            </div>
         </section>
 
         <section id="passions" class="section">
-            <h2>My Passions</h2>
+            <h2><i class="fas fa-star"></i> My Passions</h2>
             <div class="interests-grid">
-                <div class="interest-card" data-aos="fade-up">
+                <div class="interest-card">
+                    <i class="fas fa-hat-chef"></i>
                     <h3>Culinary Arts</h3>
                     <p>Exploring flavors and creating memorable dining experiences</p>
+                    <img src="images/culinary.jpg" alt="Culinary" class="interest-image">
+                    <a href="culinary.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="interest-card" data-aos="fade-up">
+                <div class="interest-card">
+                    <i class="fas fa-boxing-glove"></i>
                     <h3>Sports</h3>
                     <p>Boxing and swimming to stay fit and focused</p>
+                    <img src="images/sports.jpg" alt="Sports" class="interest-image">
+                    <a href="sports.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="interest-card" data-aos="fade-up">
+                <div class="interest-card">
+                    <i class="fas fa-gamepad"></i>
                     <h3>Gaming</h3>
                     <p>Enjoying virtual adventures and competitive gaming</p>
+                    <img src="images/gaming.jpg" alt="Gaming" class="interest-image">
+                    <a href="gaming.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="interest-card" data-aos="fade-up">
+                <div class="interest-card">
+                    <i class="fas fa-car-sport"></i>
                     <h3>Automotive</h3>
                     <p>Passionate about supercars and motorcycles</p>
+                    <img src="images/automotive.jpg" alt="Automotive" class="interest-image">
+                    <a href="automotive.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="future" class="section">
-            <h2>Future Plans</h2>
-            <ul id="plans-list">
-                <li>Pursue culinary education in France</li>
-                <li>Master French cuisine techniques</li>
-                <li>Travel and explore different food cultures</li>
-                <li>Learn from world-renowned chefs</li>
-            </ul>
-        </section>
-
-        <section id="blog" class="section">
-            <h2>Latest Adventures</h2>
-            <div id="blog-posts">
-                <!-- Blog posts will be dynamically loaded -->
-            </div>
-        </section>
+        <!-- Other sections remain similar but with added icons -->
     </div>
     
     <footer>
-        <p>&copy; 2024 Journey to Culinary Excellence</p>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2024 Journey to Culinary Excellence</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
