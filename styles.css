@@ -236,107 +236,11 @@ footer {
     transform: translateY(-3px);
 }
 
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Settings Panel Styles */
-.settings-panel {
-    position: fixed;
-    right: -300px;
-    top: 0;
-    width: 300px;
-    height: 100vh;
-    background: var(--bg-secondary);
-    padding: 2rem;
-    box-shadow: -5px 0 15px var(--shadow-color);
-    transition: right 0.3s ease;
-    z-index: 1001;
-}
-
-.settings-panel.active {
-    right: 0;
-}
-
-.settings-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav {
-        padding: 1rem;
-    }
-
-    nav a {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-    }
-
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    .section {
-        padding: 2rem 1rem;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--accent-color);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-hover);
-}
-
-/* Glass Morphism Effects */
-.glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Loading Animation */
-.loader {
-    width: 50px;
-    height: 50px;
-    border: 3px solid var(--bg-secondary);
-    border-radius: 50%;
-    border-top-color: var(--accent-color);
-    animation: spin 1s ease-in-out infinite;
-}
-/* Settings Toggle Button */
 .settings-toggle {
     position: fixed;
     right: 20px;
-    bottom: 20px;
+    bottom: 100px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -358,7 +262,6 @@ footer {
     background: var(--accent-hover);
 }
 
-/* Settings Panel */
 .settings-panel {
     position: fixed;
     right: -300px;
@@ -473,8 +376,83 @@ footer {
     background: var(--accent-color);
 }
 
-/* Responsive Design for Settings Panel */
+/* Glass Morphism Effects */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Loading Animation */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--bg-secondary);
+    border-radius: 50%;
+    border-top-color: var(--accent-color);
+    animation: spin 1s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    nav {
+        padding: 1rem;
+    }
+
+    nav a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
     .settings-panel {
         width: 100%;
         right: -100%;
@@ -487,7 +465,6 @@ footer {
     }
 }
 
-@keyframes spin
 /* Chatbot Styles */
 .chatbot-container {
     position: fixed;
@@ -510,6 +487,7 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+    z-index: 999;
 }
 
 .chat-toggle:hover {
@@ -530,6 +508,7 @@ footer {
     flex-direction: column;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 998;
 }
 
 .chat-window.active {
@@ -672,6 +651,7 @@ footer {
     animation-delay: 0.4s;
 }
 
+/* Chat Animations */
 @keyframes typing {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -688,37 +668,7 @@ footer {
     }
 }
 
-/* Adjust settings toggle position for chat */
-.settings-toggle {
-    bottom: 100px; /* Move up to make room for chat button */
-}
-
-/* Mobile Responsiveness for Chat */
-@media (max-width: 768px) {
-    .chat-window {
-        width: 100%;
-        height: 100%;
-        bottom: 0;
-        right: 0;
-        border-radius: 0;
-    }
-
-    .chat-toggle {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-
-    .settings-toggle {
-        bottom: 90px;
-    }
-
-    .message {
-        max-width: 90%;
-    }
-}
-
-/* Scrollbar for Chat Messages */
+/* Chat Messages Scrollbar */
 .chat-messages::-webkit-scrollbar {
     width: 6px;
 }
@@ -735,8 +685,25 @@ footer {
 .chat-messages::-webkit-scrollbar-thumb:hover {
     background: var(--accent-hover);
 }
-{
-    to {
-        transform: rotate(360deg);
+
+/* Additional Mobile Styles for Chat */
+@media (max-width: 768px) {
+    .chat-window {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+
+    .chat-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .message {
+        max-width: 90%;
     }
 }
+
