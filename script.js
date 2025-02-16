@@ -242,33 +242,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 // Chatbot Functionality
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Enhanced responses object
+    // Enhanced AI responses
     const responses = {
-        // Website-specific responses
-        "culinary": "I'm passionate about culinary arts! I'm planning to study in France and master French cuisine techniques. Would you like to know more about my culinary journey?",
-        "cooking": "Cooking is my biggest passion! I specialize in French cuisine and am constantly learning new techniques. Would you like to see some of my favorite recipes?",
-        "chef": "My goal is to become a professional chef! I'm planning to study culinary arts in France. Would you like to know more about my plans?",
-        "france": "I plan to study culinary arts in France to master French cuisine. It's been my dream to learn from the best chefs in the world!",
-        "sports": "I'm very active in sports! I particularly enjoy boxing and swimming. These activities help me stay fit and focused. Would you like to know more about my training routine?",
-        "boxing": "Boxing is one of my favorite sports! It helps me stay disciplined and focused. I train regularly and love the physical and mental challenges it brings.",
-        "swimming": "Swimming is a great way to stay fit! I practice regularly and find it very relaxing. Would you like to know more about my swimming routine?",
-        "gaming": "I'm an avid gamer! I enjoy various games and sometimes stream my gaming sessions. Would you like to know what games I play?",
-        "cars": "I'm passionate about supercars and motorcycles! I love learning about different models and their specifications. Do you have a favorite supercar?",
-        "bikes": "Motorcycles are one of my passions! I'm particularly interested in high-performance bikes. Would you like to know more about my favorite models?",
+        // Culinary Passion
+        "culinary": "I'm deeply passionate about culinary arts! My goal is to master various global cuisines, starting with French cuisine in France. Want to hear more?",
+        "cooking": "Cooking is my greatest passion! I love experimenting with flavors, techniques, and global cuisines. However, I don't share my recipes. Would you like to hear about my culinary journey?",
+        "chef": "I aspire to be a world-class chef, mastering cuisines from around the world. I'm planning to study in France first. Want to know more?",
+        "recipes": "I don’t share my recipes, but I’d love to discuss cooking techniques and different cuisines!",
+        "french cuisine": "French cuisine is the foundation of fine dining! I plan to study in France to learn from the best chefs in the world.",
+        "global cuisine": "I aim to master every cuisine, from Italian to Japanese, Thai, Indian, and beyond! What's your favorite cuisine?",
+        
+        // Sports
+        "sports": "I'm highly active and enjoy boxing and swimming. These keep me disciplined and fit. Want to know about my training?",
+        "boxing": "Boxing is not just a sport but a lifestyle for me. It keeps me strong, focused, and disciplined.",
+        "swimming": "Swimming is my way of relaxing while staying fit. I love challenging myself with different strokes and endurance training.",
 
-        // General questions
-        "hello": "Hi there! I'm the website's AI assistant. How can I help you today?",
-        "hi": "Hello! I'd love to tell you more about my journey and passions. What would you like to know?",
-        "how are you": "I'm doing great, thanks for asking! I'm here to tell you all about my culinary journey and other interests. What would you like to know?",
-        "who are you": "I'm an AI assistant who can tell you all about this website owner's journey in culinary arts, sports, gaming, and automotive interests!",
-        "what do you do": "I'm here to help you learn more about the website owner's passions in culinary arts, sports, gaming, and automotive interests. What would you like to know about?",
+        // Gaming
+        "gaming": "Gaming is another passion of mine! I love competing online and exploring different game genres. Want to know my favorites?",
+        "favorite game": "I play a variety of games. Some of my favorites include open-world RPGs, racing games, and strategy-based titles.",
 
-        // Default responses
-        "default": "I'm not sure about that, but I'd be happy to tell you about my culinary journey, sports activities, gaming interests, or automotive passions. What interests you most?",
-        "unknown": "I might not have information about that specific topic, but I can tell you about my main interests in culinary arts, sports, gaming, or automotive culture!"
+        // Cars & Bikes
+        "cars": "I’m a huge supercar enthusiast! I admire brands like Ferrari, Lamborghini, and Porsche. What's your dream car?",
+        "bikes": "Motorcycles fascinate me, especially high-performance models like the Ninja H2R and Ducati Panigale.",
+
+        // Travel
+        "travel": "I love exploring new destinations! From Paris to Dubai, every trip inspires my cooking. Where do you like to travel?",
+        
+        // General Questions
+        "hello": "Hi! I'm Aabaan’s chatbot. How can I assist you today?",
+        "who are you": "I'm an AI assistant that knows everything about Aabaan—his passions, interests, and goals!",
+        "what do you do": "I share information about Aabaan's journey, whether it's culinary arts, sports, gaming, or travel.",
+
+        // Default Response
+        "default": "I'm not sure about that, but I can tell you about my interests! Want to chat about food, travel, or sports?"
     };
 
+    // Chatbot Elements
     const chatToggle = document.getElementById('chatToggle');
     const chatWindow = document.getElementById('chatWindow');
     const closeChatBtn = document.getElementById('closeChatBtn');
@@ -277,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chatMessages');
 
     if (chatToggle && chatWindow && closeChatBtn && chatInput && sendMessage && chatMessages) {
-        // Toggle chat window
+        // Toggle chat
         chatToggle.addEventListener('click', () => {
             chatWindow.classList.add('active');
             chatToggle.style.display = 'none';
@@ -288,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
             chatToggle.style.display = 'block';
         });
 
-        // Add typing indicator
+        // Show Typing Indicator
         function showTypingIndicator() {
             const typingDiv = document.createElement('div');
             typingDiv.classList.add('message', 'bot-message', 'typing-indicator');
@@ -310,35 +321,31 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get bot response
         function getBotResponse(message) {
             message = message.toLowerCase();
-            
-            // Check for exact matches
+
             if (responses[message]) {
                 return responses[message];
             }
 
-            // Check for partial matches
             for (let key of Object.keys(responses)) {
                 if (message.includes(key)) {
                     return responses[key];
                 }
             }
 
-            // Check for question types
             if (message.includes('?')) {
                 if (message.includes('what') || message.includes('tell me about')) {
-                    return "I can tell you about my journey in culinary arts, sports, gaming, or automotive interests. Which area interests you?";
+                    return "I can tell you about Aabaan’s journey in culinary arts, sports, gaming, and travel. What interests you?";
                 }
                 if (message.includes('where')) {
-                    return "Are you interested in knowing about my future plans to study in France, or something else?";
+                    return "Are you asking about Aabaan’s future plans to study in France, or another topic?";
                 }
                 if (message.includes('why')) {
-                    return "My passion for culinary arts and other interests drives everything I do. Would you like to know more about any specific area?";
+                    return "Aabaan's passion for culinary arts and adventure drives everything he does! Want details?";
                 }
                 if (message.includes('how')) {
-                    return "I'm pursuing my dreams through dedication and hard work. Would you like to know more about my journey?";
+                    return "Dedication, hard work, and passion are key. Would you like to know about Aabaan’s journey?";
                 }
             }
-
             return responses.default;
         }
 
@@ -347,14 +354,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const message = chatInput.value.trim();
             if (message === '') return;
 
-            // Add user message
             addMessage(message, 'user');
             chatInput.value = '';
 
-            // Show typing indicator
             const typingIndicator = showTypingIndicator();
 
-            // Get and add bot response with delay
             setTimeout(() => {
                 typingIndicator.remove();
                 const response = getBotResponse(message.toLowerCase());
@@ -362,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
         }
 
-        // Event listeners
+        // Event Listeners
         sendMessage.addEventListener('click', sendChatMessage);
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -376,4 +380,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 });
+
 
