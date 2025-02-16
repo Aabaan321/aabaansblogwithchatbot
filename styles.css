@@ -793,32 +793,15 @@ footer {
     transform: translateY(-5px);
 }
 
-/* Profile Section Styles */
-.profile-container {
-    display: flex;
-    gap: 2.5rem;
-    align-items: flex-start;
-    background: var(--bg-accent);
-    padding: 2rem;
-    border-radius: 20px;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.profile-container:hover {
-    transform: translateY(-5px);
-}
-
 .profile-image {
     flex-shrink: 0;
     width: 250px;
     height: 250px;
-    position: relative;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    border-radius: 50%; /* Changed to 50% for circular shape */
     overflow: hidden;
     box-shadow: 0 5px 15px var(--shadow-color);
     border: 3px solid var(--accent-color);
+    position: relative;
 }
 
 .profile-image::after {
@@ -829,7 +812,7 @@ footer {
     right: 0;
     bottom: 0;
     background: linear-gradient(45deg, rgba(255, 62, 62, 0.2), transparent);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    border-radius: 50%; /* Added to match container */
 }
 
 .profile-image img {
