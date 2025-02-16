@@ -383,7 +383,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // Jotform Chatbot
-window.addEventListener("DOMContentLoaded", function() {
+// Add this in your script.js file
+<script src="https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
     window.AgentInitializer.init({
       rootId: "JotformAgent-01950f9856b17e318fad27c61139a192b097",
       formID: "01950f9856b17e318fad27c61139a192b097",
@@ -402,4 +405,6 @@ window.addEventListener("DOMContentLoaded", function() {
         position: "right"
       }
     });
-});
+  });
+</script>
+
