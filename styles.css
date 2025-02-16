@@ -775,25 +775,4 @@ footer {
         max-width: 90%;
     }
 }
-.profile-image {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 2rem auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    animation: fadeInUp 1s ease;
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.profile-image:hover img {
-    transform: scale(1.1);
-}
 
