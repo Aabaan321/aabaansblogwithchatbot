@@ -388,10 +388,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
   window.addEventListener("DOMContentLoaded", function() {
     window.AgentInitializer.init({
-      rootId: "JotformAgent-01950f9856b17e318fad27c61139a192b097",
-      formID: "01950f9856b17e318fad27c61139a192b097",
+      rootId: "JotformAgent-019519c906517e568627369b3d435f2081df",
+      formID: "019519c906517e568627369b3d435f2081df",
       queryParams: ["skipWelcome=1", "maximizable=1"],
-      domain: "https:\/\/www.jotform.com",
+      domain: "https://www.jotform.com",
       isInitialOpen: false,
       isDraggable: false,
       background: "linear-gradient(180deg, #C8CEED 0%, #C8CEED 100%)",
@@ -400,11 +400,13 @@ document.addEventListener('DOMContentLoaded', function() {
       variant: false,
       customizations: {
         greeting: "Yes",
-        greetingMessage: "HI how could i help you today fell free to ask any question about my blog",
+        greetingMessage: "Hi, My Name is Aabaan how could I assist you today?",
         pulse: "Yes",
         position: "right"
       }
     });
   });
+</script>
+
 </script>
 
